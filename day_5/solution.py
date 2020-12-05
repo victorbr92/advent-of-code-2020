@@ -54,8 +54,8 @@ if __name__ == '__main__':
         board_cards.add(board_id)
 
     possible_ids = {
-        int(row*8 + column + 5) for row in range(min(rows), max(rows)) for column in range(min(columns), max(columns))
+        int(row*8 + column) for row in range(min(rows), max(rows)) for column in range(min(columns), max(columns))
     }
 
     print(f'\nMaximum value is {max(board_cards)}')
-    print(f'The only remaining sit is {possible_ids - board_cards}')
+    print(f'The only remaining sits are {possible_ids - board_cards}')
