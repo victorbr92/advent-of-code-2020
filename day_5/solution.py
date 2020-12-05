@@ -4,7 +4,9 @@ with open('input.txt', 'r') as f:
 
 class BoardingPass:
     def __init__(self, instructions):
-        self.instructions = instructions
+        self.raw_instructions = instructions
+
+        self.binary_instructions = self._decode_instruction()
         self.row = self._get_row()
         self.column = self._get_column()
 
@@ -13,10 +15,19 @@ class BoardingPass:
         return int(self.row*8 + self.column)
 
     def _get_column(self) -> int:
-        return int(''.join({'R': '1', 'L': '0'}[c] for c in self.instructions[7::]), 2)
+        return int(self.binary_instructions[7::], 2)
 
     def _get_row(self) -> int:
-        return int(''.join({'B': '1', 'F': '0'}[c] for c in self.instructions[0:7]), 2)
+        return int(self.binary_instructions[0:7], 2)
+
+    def _decode_instruction(self) -> str:
+        d = {'F': '0', 'B': '1', 'L': '0', 'R': '1'}
+
+        instructions = self.raw_instructions
+        for key, value in d.items():
+            instructions = instructions.replace(key, value)
+
+        return instructions
 
 
 if __name__ == '__main__':
