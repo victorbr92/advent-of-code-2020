@@ -53,14 +53,15 @@ def check_inside(
     return acc
 
 
-def sum_bags_inside(color: str, reference: Dict[str, Dict[str, int]], level: int = 0):
+def sum_bags_inside(color: str, reference: Dict[str, Dict[str, int]], level: int = 0, cache: Dict = {}):
     # space = '\t'*level
     level += 1
     count = 0
     if len(reference[color]):
         for inside_color, amount in reference[color].items():
             count += amount
-            count += amount * sum_bags_inside(color=inside_color, reference=bags, level=level)
+            bag_sum = sum_bags_inside(color=inside_color, reference=bags, level=level, cache=cache)
+            count += amount * bag_sum
             # print(f'{space}Finished loop of {color},{amount} with {count}')
         return count
     else:
