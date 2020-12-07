@@ -53,6 +53,20 @@ def check_inside(
     return acc
 
 
+def sum_bags_inside(color: str, reference: Dict[str, Dict[str, int]], level: int = 0):
+    # space = '\t'*level
+    level += 1
+    count = 0
+    if len(reference[color]):
+        for inside_color, amount in reference[color].items():
+            count += amount
+            count += amount * sum_bags_inside(color=inside_color, reference=bags, level=level)
+            # print(f'{space}Finished loop of {color},{amount} with {count}')
+        return count
+    else:
+        return 0
+
+
 if __name__ == '__main__':
 
     bags = {}
@@ -62,6 +76,7 @@ if __name__ == '__main__':
 
     n_has_shiny_gold = check_for_shiny_gold(bags=bags)
     print(f'{n_has_shiny_gold} has shiny gold inside it.')
-    total = check_inside(color='shiny gold', reference=bags)
+
+    total = sum_bags_inside(color='shiny gold', reference=bags)
     print(f'{total} are inside shiny gold.')
 
