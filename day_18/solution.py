@@ -1,6 +1,3 @@
-import re
-
-
 def process_operation(expression: str):
     operators_position = [m.start() for m in re.finditer(r'\+|\*', expression)]
 
