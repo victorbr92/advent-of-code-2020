@@ -1,24 +1,17 @@
+import re
+
+
 def process_operation(expression: str):
-    operators_position = [m.start() for m in re.finditer(r'\+|\*', expression)]
+    steps = expression.split('*')
+    prod = 1
+    for step in steps:
+        partial = eval(step)
+        prod *= partial
 
-    if len(operators_position) == 0:
-        return expression
-    if len(operators_position) == 1:
-        return str(eval(expression))
-    else:
-        second_operator = operators_position[1]
-        eval_string = expression[0:second_operator]
-
-        partial = str(eval(eval_string))
-        rest = expression[second_operator::]
-
-        expression = partial + rest
-
-        result = process_operation(expression)
-        return result
+    return str(prod)
 
 
-def process(expression):
+def process(expression: str):
     opening = [m.start() for m in re.finditer(r'\(', expression)]
     closing = [m.start() for m in re.finditer(r'\)', expression)]
 

@@ -3,21 +3,17 @@ from day_18.solution import (
     process_operation,
 )
 
-s1 = '1 * (2+3)'
-s2 = '1 * (2+3) + (3+5)'
-s3 = '1 + (4 * (5 + 6))'
-
 
 def test_simple_process_operation():
     expected = '9'
-    expression = '1 + 2 * 3'
+    expression = '3 * 2 + 1'
     result = process_operation(expression)
 
     assert result == expected
 
 
 def test_process_operation():
-    expected = '71'
+    expected = '231'
     expression = '1 + 2 * 3 + 4 * 5 + 6'
     result = process_operation(expression)
 
@@ -41,8 +37,8 @@ def test_double_parenthesis():
 
 
 def test_nested_parenthesis():
-    expected = '45'
-    expression = '1 + (4 * (5 + 6))'
+    expected = '669060'
+    expression = '5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))'
     result = process(expression)
 
     assert result == expected
