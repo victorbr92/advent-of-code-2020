@@ -1,2 +1,5 @@
-# advent-of-code-2020
-Solutions to the advent of code in Python
+# Advent of Code
+
+Solutions to the advent of code challenge in Python
+
+https://adventofcode.com/
