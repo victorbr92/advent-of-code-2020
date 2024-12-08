@@ -23,7 +23,7 @@ def antinode_line(reference: Tuple[int, int], other: Tuple[int, int], grid):
     while (0 <= an[0] < len(grid[0]) and 0 <= an[1] < len(grid)):
         an_list.append(an)
         an = (an[0] + drow, an[1] + dcol)
-    
+
     return an_list
 
 
